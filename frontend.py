@@ -8,7 +8,6 @@ st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
 image_file = st.file_uploader("Upload A File",type=['png','jpeg','jpg'])
 def predict():
-    st.write("prediction should happen here")
     return main.recognize_food('./test.jpg')
     
 if image_file is not None:
