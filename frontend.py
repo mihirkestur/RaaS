@@ -8,8 +8,6 @@ import google_vision
 st.set_page_config(page_title='Upload Image', layout = 'centered', initial_sidebar_state = 'auto')
 st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
-FRAME_WINDOW = st.image([])
-camera = cv2.VideoCapture(0)
 image_file = st.file_uploader("Upload A File",type=['png','jpeg','jpg'])
 
 def predict():
@@ -35,6 +33,8 @@ if image_file is not None:
                 f.write(image_file.getbuffer())         
             st.success("File Saved!")
 if(take_pic):
+    FRAME_WINDOW = st.image([])
+    camera = cv2.VideoCapture(0)
     _, frame = camera.read()
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     FRAME_WINDOW.image(frame)
