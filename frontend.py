@@ -2,9 +2,7 @@ import streamlit as st
 import os
 import cv2
 import search
-import google_vision
-
-
+import main
 st.set_page_config(page_title='Upload Image', layout = 'centered', initial_sidebar_state = 'auto')
 st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
@@ -12,9 +10,7 @@ image_file = st.file_uploader("Upload A File",type=['png','jpeg','jpg'])
 
 def predict():
     st.write("prediction should happen here")
-    ing=google_vision.return_ingredients(image_file.name)
-    print(ing)
-    return ing
+    return main.recognize_food('./test.jpg')
     
 if image_file is not None:
     file_details = {"FileName":image_file.name,"FileType":image_file.type}
@@ -41,8 +37,8 @@ if(take_pic):
     cv2.imwrite("test.jpg", frame)
 
 if(st.button("RaaS it")):
-    ingredients=predict()
-    # ingredients = ["apple"]
+    
+    ingredients = predict()
     recipes = search.get_recipes(ingredients)
     for i in recipes:
         st.write("**Recipe name: **", str(i["recipe"]))
