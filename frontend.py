@@ -7,6 +7,7 @@ st.set_page_config(page_title='Upload Image', layout = 'centered', initial_sideb
 st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
 image_file = st.file_uploader("Upload A File",type=['png','jpeg','jpg'])
+
 def predict():
     return main.recognize_food('./test.jpg')
     
@@ -19,6 +20,7 @@ if image_file is not None:
 		    with open(os.path.join("./",image_file.name),"wb") as f: 
 		      f.write(image_file.getbuffer())         
 		    st.success("File Saved!")
+            
     else:
         st.write("No Preview Available!")
         if st.button("Save file"):
