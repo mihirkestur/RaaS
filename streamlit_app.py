@@ -30,14 +30,14 @@ if image_file is not None:
     filetype = {image_file.type}
     if filetype == {'image/png'} or filetype == {'image/jpeg'} or filetype == {'image/jpg'}:
         st.image(image_file)
-        with open(os.path.join("./",image_file.name),"wb") as f: 
+        with open(os.path.join("./","test.jpg"),"w") as f: 
             f.write(image_file.getbuffer())         
             st.success("File Saved!")
             
     else:
         st.write("No Preview Available!")
         if st.button("Save file"):
-            with open(os.path.join("./",image_file.name),"wb") as f: 
+            with open(os.path.join("./","test.jpg"),"w") as f: 
                 f.write(image_file.getbuffer())         
             st.success("File Saved!")
 if(take_pic):

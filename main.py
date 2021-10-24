@@ -29,12 +29,6 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'client_key.json'
 #     #print(names)
 #     return names
 
-path="./Knowns/"
-
-fruits=[line.strip('\n').lower() for line in open(path+"Fruits.txt","r")]
-vegetables=[line.strip('\n').lower() for line in open(path+"Vegetables.txt","r")]
-#print(fruits,vegetables,sep="\n")
-
 
 def recognize_food(img_path):
     start_time = datetime.now()
