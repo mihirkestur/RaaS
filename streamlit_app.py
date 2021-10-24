@@ -53,5 +53,7 @@ if(st.button("RaaS it")):
     for i in recipes[:10]:
         st.text("**----------------------------------**")
         st.write("**Recipe name: **", str(i["recipe"]))
+        link = f'[Link to Recepie]({str(i["URL"])})'
+        st.markdown(link, unsafe_allow_html=True)
         st.write("**Prep time: **", str(i["preptime"]))
         st.write("**Cook time: **",  str(i["cooktime"]))
