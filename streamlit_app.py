@@ -3,7 +3,7 @@ import os
 import cv2
 import search
 import main
-st.set_page_config(page_title='Upload Image', layout = 'wide', initial_sidebar_state = 'auto')
+st.set_page_config(page_title='RaaS', layout = 'wide', initial_sidebar_state = 'auto')
 m = st.markdown("""
 <style>
 div.stButton > button:first-child {
