@@ -29,6 +29,12 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'client_key.json'
 #     #print(names)
 #     return names
 
+path="./Knowns/"
+
+fruits=[line.strip('\n').lower() for line in open(path+"Fruits.txt","r")]
+vegetables=[line.strip('\n').lower() for line in open(path+"Vegetables.txt","r")]
+#print(fruits,vegetables,sep="\n")
+
 
 def recognize_food(img_path):
     start_time = datetime.now()
@@ -65,23 +71,14 @@ def recognize_food(img_path):
     print(labels,type(labels))
     ingredients=list()
     for label in labels:
-        # if len(text.description) == 10:
+        #if label in fruits or label in vegetables:
         desc = label.description.lower()
         ingredients.append(desc)
         score = round(label.score, 2)
-        #print("label: ", desc, "  score: ", score)
+        
     print(ingredients)
     return ingredients
-        
-    #
-    #         # Put text license plate number to image
-    #         cv2.putText(img, desc.upper() + " ???", (300, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (50, 50, 200), 2)
-    #         cv2.imshow('Recognize & Draw', img)
-    #         cv2.waitKey(0)
-    #
-    #         # Get first fruit only
-    #         break
-    #
+
     print('Total time: {}'.format(datetime.now() - start_time))
 
 

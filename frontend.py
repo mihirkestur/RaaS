@@ -3,10 +3,10 @@ import os
 import cv2
 import search
 import main
-st.set_page_config(page_title='Upload Image', layout = 'centered', initial_sidebar_state = 'auto')
+st.set_page_config(page_title='Upload Image', layout = 'wide', initial_sidebar_state = 'auto')
 st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
-image_file = st.file_uploader("Upload A File",type=['png','jpeg','jpg'])
+image_file = st.file_uploader("Upload an image",type=['png','jpeg','jpg'])
 
 def predict():
     return main.recognize_food('./test.jpg')
