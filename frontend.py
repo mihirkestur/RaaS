@@ -4,10 +4,20 @@ import cv2
 import search
 import main
 st.set_page_config(page_title='Upload Image', layout = 'wide', initial_sidebar_state = 'auto')
+m = st.markdown("""
+<style>
+div.stButton > button:first-child {
+    background-color: #00ff00;
+    color:#ffffff;
+}
+div.stButton > button:hover {
+    background-color: #0099ff;
+    color:#ff0000;
+    }
+</style>""", unsafe_allow_html=True)
 st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
 image_file = st.file_uploader("Upload an image",type=['png','jpeg','jpg'])
-
 def predict():
     return main.recognize_food('./test.jpg')
     

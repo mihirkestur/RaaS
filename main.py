@@ -57,23 +57,38 @@ def recognize_food(img_path):
     # # Create google vision client
     client = vision.ImageAnnotatorClient()
     #
-    # # Read image file
+    # # Read image fileimage
     with io.open(img_path, 'rb') as image_file:
          content = image_file.read()
     #
-    image = vision.types.Image(content=content)
+    request = {
+    "image": {
+        "content": content
+    },    
+    }
+
+
+
+    # Performs label detection on the image file
+    response = client.annotate_image(request)
+
+
+    labels = response.localized_object_annotations
+    # objects =response.objects
+    #image = vision.types.Image(content=content)
     #
     # # Recognize text
-    response = client.label_detection(image=image)
-    labels = response.label_annotations
+    #response = client.label_detection(image=image)
+    #labels = response.label_annotations
     #
 
     print(labels,type(labels))
     ingredients=list()
     for label in labels:
         #if label in fruits or label in vegetables:
-        desc = label.description.lower()
-        ingredients.append(desc)
+        #desc = label.description.lower()
+        if(label.name not in ingredients):
+            ingredients.append(label.name)
         score = round(label.score, 2)
         
     print(ingredients)
