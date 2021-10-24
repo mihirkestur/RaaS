@@ -7,13 +7,17 @@ st.set_page_config(page_title='Upload Image', layout = 'wide', initial_sidebar_s
 m = st.markdown("""
 <style>
 div.stButton > button:first-child {
-    background-color: #00ff00;
-    color:#ffffff;
+    background-color: #F2DEDA;
+    color:#F24E2B;
+    border-color:#FFFFFF
 }
 div.stButton > button:hover {
-    background-color: #0099ff;
-    color:#ff0000;
+    background-color: #F24E2B;
+    color:#F2DEDA;
     }
+div.sttext > text:first-child {
+    color:#FFFFFF
+}
 </style>""", unsafe_allow_html=True)
 st.title("RaaS: Recipes as a service")
 take_pic = st.button("Take Picture")
@@ -25,11 +29,10 @@ if image_file is not None:
     file_details = {"FileName":image_file.name,"FileType":image_file.type}
     filetype = {image_file.type}
     if filetype == {'image/png'} or filetype == {'image/jpeg'} or filetype == {'image/jpg'}:
-	    st.image(image_file)
-	    if st.button("Save file"):
-		    with open(os.path.join("./",image_file.name),"wb") as f: 
-		      f.write(image_file.getbuffer())         
-		    st.success("File Saved!")
+        st.image(image_file)
+        with open(os.path.join("./",image_file.name),"wb") as f: 
+            f.write(image_file.getbuffer())         
+            st.success("File Saved!")
             
     else:
         st.write("No Preview Available!")
@@ -49,7 +52,8 @@ if(st.button("RaaS it")):
     
     ingredients = predict()
     recipes = search.get_recipes(ingredients)
-    for i in recipes:
+    for i in recipes[:10]:
+        st.text("**----------------------------------**")
         st.write("**Recipe name: **", str(i["recipe"]))
         st.write("**Prep time: **", str(i["preptime"]))
         st.write("**Cook time: **",  str(i["cooktime"]))
