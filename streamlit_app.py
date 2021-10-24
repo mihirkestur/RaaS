@@ -26,20 +26,18 @@ def predict():
     return main.recognize_food('./test.jpg')
     
 if image_file is not None:
-    file_details = {"FileName":image_file.name,"FileType":image_file.type}
     filetype = {image_file.type}
     if filetype == {'image/png'} or filetype == {'image/jpeg'} or filetype == {'image/jpg'}:
         st.image(image_file)
-        with open(os.path.join("./","test.jpg"),"w") as f: 
+        with open(os.path.join("./","test.jpg"),"wb") as f: 
             f.write(image_file.getbuffer())         
             st.success("File Saved!")
             
     else:
         st.write("No Preview Available!")
-        if st.button("Save file"):
-            with open(os.path.join("./","test.jpg"),"w") as f: 
-                f.write(image_file.getbuffer())         
-            st.success("File Saved!")
+        with open(os.path.join("./","test.jpg"),"wb") as f: 
+            f.write(image_file.getbuffer())         
+        st.success("File Saved!")
 if(take_pic):
     FRAME_WINDOW = st.image([])
     camera = cv2.VideoCapture(0)
