@@ -1,7 +1,7 @@
 import pandas as pd
 def get_recipes(ingredients):
     recipes = []
-    df = pd.read_csv("recipes.csv")
+    df = pd.read_csv("./dataset/recipes.csv")
     for index, row in df.iterrows():
         count = 0
         for i in ingredients:
