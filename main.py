@@ -4,15 +4,13 @@ Recognize food: fruit, vegetable
 import io
 import os
 from datetime import datetime
-
+import streamlit as st
 import cv2
 from google.cloud import vision_v1p3beta1 as vision
-# Setup google authen client key
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'client_key.json'
-
-
 
 def recognize_food(img_path):
+    # Setup google authen client key
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'client_key.json'
     start_time = datetime.now()
 
     # Read image with opencv
